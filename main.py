@@ -61,7 +61,8 @@ def random_move():
         grid[random_column][random_row] = 1
     print(random_column, random_row)
 
-scheduler.add_job(random_move, 'interval', seconds=0.1)
+
+scheduler.add_job(random_move, "interval", seconds=0.1)
 
 # -------- Main Program Loop -----------
 while not done:
