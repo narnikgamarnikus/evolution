@@ -1,3 +1,5 @@
+from random import randint
+
 import pygame
 
 from initial_data import (
@@ -29,6 +31,10 @@ def draw_grid():
             ]
             pygame.draw.rect(screen, color, rect)
 
+def random_move():
+    random_position = randint(0, GRID_SIZE)
+    print(random_position)
+
 
 # Initialize pygame
 pygame.init()
@@ -46,6 +52,7 @@ clock = pygame.time.Clock()
 
 # -------- Main Program Loop -----------
 while not done:
+
     for event in pygame.event.get():  # User did something
         if event.type == pygame.QUIT:  # If user clicked close
             done = True  # Flag that we are done so we exit this loop
