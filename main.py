@@ -1,4 +1,7 @@
+from random import randint
+
 import pygame
+from apscheduler.schedulers.background import BackgroundScheduler
 
 from initial_data import (
     WIDTH,
@@ -12,6 +15,24 @@ from initial_data import (
     BLACK,
     grid,
 )
+
+
+scheduler = BackgroundScheduler()
+scheduler.start()
+
+# Initialize pygame
+pygame.init()
+
+screen = pygame.display.set_mode(WINDOW_SIZE)
+
+# Set title of screen
+pygame.display.set_caption("Array Backed Grid")
+
+# Loop until the user clicks the close button.
+done = False
+
+# Used to manage how fast the screen updates
+clock = pygame.time.Clock()
 
 
 def draw_grid():
@@ -30,22 +51,21 @@ def draw_grid():
             pygame.draw.rect(screen, color, rect)
 
 
-# Initialize pygame
-pygame.init()
+def random_move():
+    random_column = randint(0, GRID_SIZE - 1)
+    random_row = randint(0, GRID_SIZE - 1)
+    current_rect = grid[random_column][random_row]
+    if current_rect == 1:
+        grid[random_column][random_row] = 0
+    else:
+        grid[random_column][random_row] = 1
+    print(random_column, random_row)
 
-screen = pygame.display.set_mode(WINDOW_SIZE)
-
-# Set title of screen
-pygame.display.set_caption("Array Backed Grid")
-
-# Loop until the user clicks the close button.
-done = False
-
-# Used to manage how fast the screen updates
-clock = pygame.time.Clock()
+scheduler.add_job(random_move, 'interval', seconds=0.1)
 
 # -------- Main Program Loop -----------
 while not done:
+
     for event in pygame.event.get():  # User did something
         if event.type == pygame.QUIT:  # If user clicked close
             done = True  # Flag that we are done so we exit this loop
