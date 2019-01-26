@@ -14,6 +14,22 @@ from initial_data import (
 )
 
 
+def draw_grid():
+    # Draw the grid
+    for row in range(GRID_SIZE):
+        for column in range(GRID_SIZE):
+            color = WHITE
+            if grid[row][column] == 1:
+                color = GREEN
+            rect = [
+                (MARGIN + WIDTH) * column + MARGIN,
+                (MARGIN + HEIGHT) * row + MARGIN,
+                WIDTH,
+                HEIGHT,
+            ]
+            pygame.draw.rect(screen, color, rect)
+
+
 def init_game():
     # Initialize pygame
     pygame.init()
@@ -53,19 +69,7 @@ def main():
         # Set the screen background
         screen.fill(BLACK)
 
-        # Draw the grid
-        for row in range(GRID_SIZE):
-            for column in range(GRID_SIZE):
-                color = WHITE
-                if grid[row][column] == 1:
-                    color = GREEN
-                rect = [
-                    (MARGIN + WIDTH) * column + MARGIN,
-                    (MARGIN + HEIGHT) * row + MARGIN,
-                    WIDTH,
-                    HEIGHT,
-                ]
-                pygame.draw.rect(screen, color, rect)
+        draw_grid()
 
         # Limit to 60 frames per second
         clock.tick(60)
