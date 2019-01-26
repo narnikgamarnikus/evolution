@@ -7,6 +7,8 @@ verify_ssl = true
 
 [packages]
 pygame = "*"
+black = "*"
+mypy = "*"
 
 [requires]
 python_version = "3.7"

@@ -2,20 +2,23 @@ import pygame
 
 from initial_data import BLACK, WHITE, GREEN, RED, GRID_SIZE, WIDTH, HEIGHT, MARGIN, WINDOW_SIZE, grid
  
-# Initialize pygame
-pygame.init()
- 
-screen = pygame.display.set_mode(WINDOW_SIZE)
- 
-# Set title of screen
-pygame.display.set_caption("Array Backed Grid")
- 
-# Loop until the user clicks the close button.
-done = False
- 
-# Used to manage how fast the screen updates
-clock = pygame.time.Clock()
- 
+
+def init_game():
+    # Initialize pygame
+    pygame.init()
+
+    screen = pygame.display.set_mode(WINDOW_SIZE)
+
+    # Set title of screen
+    pygame.display.set_caption("Array Backed Grid")
+
+    # Loop until the user clicks the close button.
+    done = False
+
+    # Used to manage how fast the screen updates
+    clock = pygame.time.Clock()
+
+def main():
 # -------- Main Program Loop -----------
 while not done:
     for event in pygame.event.get():  # User did something
@@ -55,7 +58,12 @@ while not done:
  
     # Go ahead and update the screen with what we've drawn.
     pygame.display.flip()
- 
-# Be IDLE friendly. If you forget this line, the program will 'hang'
-# on exit.
-pygame.quit()
+
+    # Be IDLE friendly. If you forget this line, the program will 'hang'
+    # on exit.
+    pygame.quit()
+
+
+if __name__ == "__main__":
+    init_game()
+    main()
